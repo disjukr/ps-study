@@ -29,6 +29,20 @@ class Node {
             }
         }
     }
+    cw() {
+        const result = this.left;
+        if (!result) throw new Error();
+        this.left = result.right;
+        result.right = this;
+        return result;
+    }
+    ccw() {
+        const result = this.right;
+        if (!result) throw new Error();
+        this.right = result.left;
+        result.left = this;
+        return result;
+    }
 }
 
 function* inorder(root) {
@@ -72,16 +86,26 @@ function* bfs(root) {
     }
 }
 
+// const root = new Node(25);
+// const items5 = [49,25,44,36,45];
+// const items30 = [49,25,44,36,45,42,32,40,39,39,12,40,20,36,48,9,33,15,9,47,32,21,31,17,21,47,7,17,5,34];
+
+// for (const item of items30) {
+//     root.insert(item);
+// }
+
+// console.log(root);
+
+// for (const item of bfs(root)) {
+//     console.log(item.value);
+// }
+
 const root = new Node(25);
-const items5 = [49,25,44,36,45];
-const items30 = [49,25,44,36,45,42,32,40,39,39,12,40,20,36,48,9,33,15,9,47,32,21,31,17,21,47,7,17,5,34];
+root.insert(25);
+root.insert(49);
+root.insert(44);
+root.insert(50);
+root.insert(36);
+root.insert(45);
 
-for (const item of items30) {
-    root.insert(item);
-}
-
-console.log(root);
-
-for (const item of bfs(root)) {
-    console.log(item.value);
-}
+console.log(root.cw());
