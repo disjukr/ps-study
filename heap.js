@@ -60,11 +60,4 @@ class Heap {
     }
 }
 
-const items5 = [49,25,44,36,45];
-const items15 = [49,25,44,36,45,42,32,40,39,39,12,40,20,36,48];
-const items30 = [49,25,44,36,45,42,32,40,39,39,12,40,20,36,48,9,33,15,9,47,32,21,31,17,21,47,7,17,5,34];
-const arr = items15;
-
-const heap = new Heap(false);
-for (const item of arr) heap.push(item);
-while (!heap.isEmpty()) console.log(heap.pop());
+exports.Heap = Heap;
