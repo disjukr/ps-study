@@ -34,3 +34,12 @@ function* mul(a) {
     let i = 0;
     while (true) yield a * ++i;
 }
+
+/**
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ */
+function lcm2(a, b) {
+    return a * b / gcd(a, b);
+}
