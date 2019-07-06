@@ -11,7 +11,7 @@ console.log(bruteforceTsp(world));
 
 function bruteforceTsp(world: World): [Path, number] {
     const items = [...Array(world.length).keys()];
-    const paths = [...combinations(items)];
+    const paths = [...combinations(items)].map(path => [...path, path[0]]);
     const costMap: [number[], number][] = paths.map(path => [path, calcCost(world, path)]);
     costMap.sort((a, b) => a[1] - b[1]);
     return costMap[0];
