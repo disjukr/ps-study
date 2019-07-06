@@ -6,13 +6,14 @@ const world = [
     [ 8,  8,  9,  0],
 ];
 type Path = number[];
+type Cost = number;
 
 console.log(bruteforceTsp(world));
 
-function bruteforceTsp(world: World): [Path, number] {
+function bruteforceTsp(world: World): [Path, Cost] {
     const items = [...Array(world.length).keys()];
     const paths = [...combinations(items)].map(path => [...path, path[0]]);
-    const costMap: [number[], number][] = paths.map(path => [path, calcCost(world, path)]);
+    const costMap: [Path, Cost][] = paths.map(path => [path, calcCost(world, path)]);
     costMap.sort((a, b) => a[1] - b[1]);
     return costMap[0];
 }
@@ -33,7 +34,7 @@ function* combinations(items: number[]): IterableIterator<number[]> {
 function* eachCons(items: number[]): IterableIterator<[number, number]> {
     for (let i = 0; i < items.length - 1; ++i) yield [items[i], items[i + 1]];
 }
-function calcCost(world: World, path: Path): number {
+function calcCost(world: World, path: Path): Cost {
     return [...eachCons(path)].reduce((sum, [from, to]) => {
         return sum + world[from][to];
     }, 0);
